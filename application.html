@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>応募フォーム - 撮られたガールズ撮影会</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__inner">
+            <a href="index.html" class="header__logo">
+                <img src="logo.svg" alt="LOGO" class="header__logo-image">
+            </a>
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li class="header__nav-item"><a href="event-list.html">EVENT</a></li>
+                    <li class="header__nav-item"><a href="model-list.html">MODEL</a></li>
+                    <li class="header__nav-item"><a href="first-timers.html">初めての方へ</a></li>
+                    <li class="header__nav-item"><a href="qa.html">Q&A</a></li>
+                    <li class="header__nav-item"><a href="contact.html">問い合わせ</a></li>
+                    <li class="header__nav-item header__nav-item--active"><a href="recruitment.html">モデル募集</a></li>
+                </ul>
+                <div class="header__social">
+                    <a href="#" class="header__social-link">X</a>
+                    <a href="#" class="header__social-link header__social-link--line">LINE</a>
+                </div>
+            </nav>
+            <div class="header__hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="header__mobile-menu">
+            <ul class="header__mobile-nav-list">
+                <li class="header__mobile-nav-item"><a href="event-list.html">EVENT</a></li>
+                <li class="header__mobile-nav-item"><a href="model-list.html">MODEL</a></li>
+                <li class="header__mobile-nav-item"><a href="first-timers.html">初めての方へ</a></li>
+                <li class="header__mobile-nav-item"><a href="qa.html">Q&A</a></li>
+                <li class="header__mobile-nav-item"><a href="contact.html">問い合わせ</a></li>
+                <li class="header__mobile-nav-item"><a href="recruitment.html">モデル募集</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Application Form -->
+    <section class="application">
+        <div class="container">
+            <h1 class="application__title">応募フォーム</h1>
+            <form class="application__form" action="#" method="post" enctype="multipart/form-data">
+                <div class="application__form-section">
+                    <h2 class="application__form-section-title">応募フォーム内容</h2>
+
+                    <div class="application__form-group">
+                        <label class="application__form-label contact__form-label--required" for="app-name">名前</label>
+                        <input type="text" id="app-name" name="name" class="application__form-input" required>
+                    </div>
+
+                    <div class="application__form-group">
+                        <label class="application__form-label contact__form-label--required" for="app-name-kana">なまえ</label>
+                        <input type="text" id="app-name-kana" name="name_kana" class="application__form-input" required>
+                    </div>
+
+                    <div class="application__form-group">
+                        <label class="application__form-label contact__form-label--required" for="app-model-name">モデル名</label>
+                        <input type="text" id="app-model-name" name="model_name" class="application__form-input" required>
+                        <p class="application__form-note">※任意</p>
+                    </div>
+
+                    <div class="application__form-group">
+                        <label class="application__form-label contact__form-label--required" for="app-birthday">生年月日</label>
+                        <input type="date" id="app-birthday" name="birthday" class="application__form-input" required>
+                    </div>
+
+                    <div class="application__form-group">
+                        <label class="application__form-label" for="app-agency">所属事務所</label>
+                        <input type="text" id="app-agency" name="agency" class="application__form-input">
+                        <p class="application__form-note">※任意</p>
+                    </div>
+
+                    <div class="application__form-group">
+                        <label class="application__form-label contact__form-label--required" for="app-address">住所</label>
+                        <input type="text" id="app-address" name="address" class="application__form-input" required>
+                    </div>
+
+                    <div class="application__form-group">
+                        <label class="application__form-label contact__form-label--required" for="app-phone">電話番号</label>
+                        <input type="tel" id="app-phone" name="phone" class="application__form-input" required>
+                    </div>
+
+                    <div class="application__form-group">
+                        <label class="application__form-label contact__form-label--required" for="app-email">メールアドレス</label>
+                        <input type="email" id="app-email" name="email" class="application__form-input" required>
+                    </div>
+
+                    <div class="application__form-group">
+                        <label class="application__form-label" for="app-sns1">SNS 1</label>
+                        <input type="text" id="app-sns1" name="sns1" class="application__form-input" placeholder="URL">
+                    </div>
+
+                    <div class="application__form-group">
+                        <label class="application__form-label" for="app-sns2">SNS 2</label>
+                        <input type="text" id="app-sns2" name="sns2" class="application__form-input" placeholder="URL">
+                        <p class="application__form-note">※任意</p>
+                    </div>
+
+                    <div class="application__form-group">
+                        <label class="application__form-label" for="app-how-know">どこで撮られたガールズを知りましたか?</label>
+                        <textarea id="app-how-know" name="how_know" class="application__form-textarea"></textarea>
+                    </div>
+
+                    <div class="application__form-group">
+                        <label class="application__form-label" for="app-height">身長</label>
+                        <input type="text" id="app-height" name="height" class="application__form-input" placeholder="cm">
+                    </div>
+
+                    <div class="application__form-group">
+                        <label class="application__form-label" for="app-upper-photo">上半身写真アップロード</label>
+                        <input type="file" id="app-upper-photo" name="upper_photo" class="application__form-file" accept="image/*">
+                    </div>
+
+                    <div class="application__form-group">
+                        <label class="application__form-label" for="app-full-photo">全身写真アップロード</label>
+                        <input type="file" id="app-full-photo" name="full_photo" class="application__form-file" accept="image/*">
+                    </div>
+
+                    <p class="application__form-note" style="color: #d32f2f; margin-top: 16px;">※任意質問</p>
+                </div>
+
+                <button type="submit" class="application__form-submit">送信する</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <h3 class="footer__title">撮られたガールズ撮影会</h3>
+                    <p class="footer__description">プロフェッショナルな撮影会サービスを提供しています。</p>
+                </div>
+                <div class="footer__section">
+                    <h4 class="footer__subtitle">メニュー</h4>
+                    <ul class="footer__links">
+                        <li><a href="event-list.html">EVENT</a></li>
+                        <li><a href="model-list.html">MODEL</a></li>
+                        <li><a href="first-timers.html">初めての方へ</a></li>
+                        <li><a href="qa.html">Q&A</a></li>
+                        <li><a href="contact.html">問い合わせ</a></li>
+                        <li><a href="recruitment.html">モデル募集</a></li>
+                    </ul>
+                </div>
+                <div class="footer__section">
+                    <h4 class="footer__subtitle">SNS</h4>
+                    <div class="footer__social">
+                        <a href="#" class="footer__social-link">X</a>
+                        <a href="#" class="footer__social-link">LINE</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2025 撮られたガールズ撮影会. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+
