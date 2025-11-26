@@ -17,11 +17,20 @@ html {
 body {
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     color: #111;
-    background-color: #fff;
+    background: linear-gradient(90deg,
+            #2cdeec 0%,
+            rgba(44, 222, 236, 0.2) 20%,
+            rgba(255, 255, 255, 0.30) 50%,
+            rgba(255, 134, 245, 0.4) 80%,
+            #ff86f5 100%);
+    background-attachment: fixed;
+    background-size: 100% 100%;
     line-height: 1.6;
     overflow-x: hidden;
     width: 100%;
     padding-top: 80px;
+    position: relative;
+    min-height: 100vh;
 }
 
 img {
@@ -46,18 +55,65 @@ ul {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .section {
     padding: 60px 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================
+   Falling Petals Effect
+   ============================================ */
+.petals-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    min-height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.falling-petal {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.6;
+    will-change: transform;
+    animation: fallDown linear infinite;
+}
+
+.falling-petal img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+@keyframes fallDown {
+    0% {
+        transform: translateY(var(--initial-y, -150px)) rotate(0deg);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(calc(var(--container-height, 100vh) + 150px)) rotate(var(--rotation, 360deg));
+        opacity: 0.6;
+    }
 }
 
 /* ============================================
    Header
    ============================================ */
 .header {
-    background-color: #fff;
-    border-bottom: 1px solid #e5e5e5;
+    background-color: #ffffff38;
+    backdrop-filter: blur(10px);
     position: fixed;
     top: 0;
     left: 0;
@@ -180,10 +236,15 @@ ul {
     top: 80px;
     left: 0;
     right: 0;
-    background-color: #fff;
+    background: linear-gradient(90deg,
+            #2cdeec 0%,
+            rgba(44, 222, 236, 1) 20%,
+            rgba(255, 134, 245, 1) 80%,
+            #ff86f5 100%);
     border-bottom: 1px solid #e5e5e5;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
 }
 
 .header__mobile-menu--open {
@@ -206,11 +267,15 @@ ul {
    Footer
    ============================================ */
 .footer {
-    background-color: #333;
+    background: linear-gradient(174deg, rgb(0 52 59) 0%, rgb(7 25 28 / 97%) 25%, rgb(0 14 22 / 99%) 50%, rgb(11 2 12) 75%, rgb(16 6 16) 100%);
     color: #fff;
-    padding: 60px 0 20px;
+    padding: 80px 0 30px;
     margin-top: 0;
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
 }
+
 
 .footer__inner {
     max-width: 1200px;
@@ -221,8 +286,8 @@ ul {
 .footer__content {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
+    gap: 60px;
+    margin-bottom: 0;
 }
 
 .footer__section {
@@ -231,23 +296,26 @@ ul {
 }
 
 .footer__title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
     color: #fff;
+    letter-spacing: 0.5px;
 }
 
 .footer__subtitle {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
     color: #fff;
+    letter-spacing: 0.3px;
 }
 
 .footer__description {
     font-size: 14px;
-    color: #ccc;
-    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+    letter-spacing: 0.2px;
 }
 
 .footer__links {
@@ -261,14 +329,17 @@ ul {
 }
 
 .footer__links a {
-    color: #ccc;
+    color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
     font-size: 14px;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.2s;
+    display: inline-block;
+    letter-spacing: 0.2px;
 }
 
 .footer__links a:hover {
     color: #fff;
+    transform: translateX(4px);
 }
 
 .footer__social {
@@ -277,10 +348,10 @@ ul {
 }
 
 .footer__social-link {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background-color: #555;
+    background-color: rgba(85, 85, 85, 0.6);
     color: #fff;
     display: flex;
     align-items: center;
@@ -288,23 +359,29 @@ ul {
     font-size: 12px;
     font-weight: bold;
     text-decoration: none;
-    transition: background-color 0.3s;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer__social-link:hover {
-    background-color: #111;
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .footer__bottom {
-    border-top: 1px solid #555;
-    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 30px;
     text-align: center;
+    margin-top: 20px;
 }
 
 .footer__copyright {
     font-size: 12px;
-    color: #999;
+    color: rgba(255, 255, 255, 0.6);
     margin: 0;
+    letter-spacing: 0.3px;
 }
 
 .faq {
@@ -317,6 +394,7 @@ ul {
     font-weight: bold;
     margin-bottom: 40px;
     text-align: center;
+    color: #2cdeec;
 }
 
 .faq__list {
@@ -524,6 +602,7 @@ ul {
     0% {
         transform: rotateY(0deg);
     }
+
     100% {
         transform: rotateY(360deg);
     }
@@ -536,47 +615,47 @@ ul {
         padding: 60px 0 0 0;
         overflow: hidden;
     }
-    
+
     .hero__carousel {
         perspective: 1000px;
         overflow: hidden;
     }
-    
+
     .hero__slide {
         width: 200px;
         height: 260px;
         margin-left: -100px;
         margin-top: -130px;
     }
-    
+
     .hero__slide:nth-child(1) {
         transform: rotateY(0deg) translateZ(360px);
     }
-    
+
     .hero__slide:nth-child(2) {
         transform: rotateY(45deg) translateZ(360px);
     }
-    
+
     .hero__slide:nth-child(3) {
         transform: rotateY(90deg) translateZ(360px);
     }
-    
+
     .hero__slide:nth-child(4) {
         transform: rotateY(135deg) translateZ(360px);
     }
-    
+
     .hero__slide:nth-child(5) {
         transform: rotateY(180deg) translateZ(360px);
     }
-    
+
     .hero__slide:nth-child(6) {
         transform: rotateY(225deg) translateZ(360px);
     }
-    
+
     .hero__slide:nth-child(7) {
         transform: rotateY(270deg) translateZ(360px);
     }
-    
+
     .hero__slide:nth-child(8) {
         transform: rotateY(315deg) translateZ(360px);
     }
@@ -588,47 +667,47 @@ ul {
         padding: 50px 0 0 0;
         overflow: hidden;
     }
-    
+
     .hero__carousel {
         perspective: 700px;
         overflow: hidden;
     }
-    
+
     .hero__slide {
         width: 160px;
         height: 210px;
         margin-left: -80px;
         margin-top: -105px;
     }
-    
+
     .hero__slide:nth-child(1) {
         transform: rotateY(0deg) translateZ(280px);
     }
-    
+
     .hero__slide:nth-child(2) {
         transform: rotateY(45deg) translateZ(280px);
     }
-    
+
     .hero__slide:nth-child(3) {
         transform: rotateY(90deg) translateZ(280px);
     }
-    
+
     .hero__slide:nth-child(4) {
         transform: rotateY(135deg) translateZ(280px);
     }
-    
+
     .hero__slide:nth-child(5) {
         transform: rotateY(180deg) translateZ(280px);
     }
-    
+
     .hero__slide:nth-child(6) {
         transform: rotateY(225deg) translateZ(280px);
     }
-    
+
     .hero__slide:nth-child(7) {
         transform: rotateY(270deg) translateZ(280px);
     }
-    
+
     .hero__slide:nth-child(8) {
         transform: rotateY(315deg) translateZ(280px);
     }
@@ -643,6 +722,7 @@ ul {
     font-weight: bold;
     margin-bottom: 40px;
     text-align: center;
+    color: #2cdeec;
 }
 
 .section-title--left {
@@ -653,7 +733,7 @@ ul {
    Event List Page
    ============================================ */
 .event-list {
-    padding: 80px 0 60px 0;
+    padding: 60px 0 60px 0;
 }
 
 .event-list__title {
@@ -661,6 +741,7 @@ ul {
     font-weight: bold;
     margin-bottom: 24px;
     text-align: center;
+    color: #000000;
 }
 
 .event-list__tabs {
@@ -675,7 +756,7 @@ ul {
     border-radius: 8px;
     background-color: #fff;
     color: #111;
-    border: 2px solid #111;
+    border: 2px solid #ffffff00;
     cursor: pointer;
     transition: all 0.3s;
     font-size: 14px;
@@ -698,19 +779,23 @@ ul {
 }
 
 .event-card {
-    background-color: #f5f5f5;
-    border: none;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.98) 100%);
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
     flex-direction: column;
     height: 100%;
+    animation: borderColorShift 4s ease-in-out infinite;
+    box-shadow: 0 2px 8px rgba(44, 222, 236, 0.1);
 }
 
 .event-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(44, 222, 236, 0.3);
+    animation-duration: 2s;
 }
 
 .event-card__image {
@@ -820,9 +905,8 @@ ul {
 .event-card__name {
     font-size: 18px;
     font-weight: bold;
-    color: #000000;
+    color: #333;
     display: block;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Event Card Responsive */
@@ -830,40 +914,40 @@ ul {
     .event-card__image {
         min-height: 250px;
     }
-    
+
     .event-card__date-box {
         top: 12px;
         left: 12px;
         padding: 10px 12px;
     }
-    
+
     .event-card__month {
         font-size: 18px;
     }
-    
+
     .event-card__day {
         font-size: 24px;
     }
-    
+
     .event-card__type-badge {
         top: 100px;
         left: 12px;
         width: 60px;
         height: 60px;
     }
-    
+
     .event-card__type-text {
         font-size: 11px;
     }
-    
+
     .event-card__footer {
         padding: 12px 16px;
     }
-    
+
     .event-card__name {
         font-size: 16px;
     }
-    
+
     .event-card__status-badge {
         top: 10px;
         right: 10px;
@@ -876,40 +960,40 @@ ul {
     .event-card__image {
         min-height: 200px;
     }
-    
+
     .event-card__date-box {
         top: 8px;
         left: 8px;
         padding: 8px 10px;
     }
-    
+
     .event-card__month {
         font-size: 16px;
     }
-    
+
     .event-card__day {
         font-size: 20px;
     }
-    
+
     .event-card__type-badge {
         top: 90px;
         left: 8px;
         width: 50px;
         height: 50px;
     }
-    
+
     .event-card__type-text {
         font-size: 10px;
     }
-    
+
     .event-card__footer {
         padding: 10px 12px;
     }
-    
+
     .event-card__name {
         font-size: 14px;
     }
-    
+
     .event-card__status-badge {
         top: 8px;
         right: 8px;
@@ -923,40 +1007,40 @@ ul {
     .model-card__image {
         min-height: 250px;
     }
-    
+
     .model-card__date-box {
         top: 12px;
         left: 12px;
         padding: 10px 12px;
     }
-    
+
     .model-card__month {
         font-size: 18px;
     }
-    
+
     .model-card__day {
         font-size: 24px;
     }
-    
+
     .model-card__type-badge {
         top: 100px;
         left: 12px;
         width: 60px;
         height: 60px;
     }
-    
+
     .model-card__type-text {
         font-size: 11px;
     }
-    
+
     .model-card__footer {
         padding: 12px 16px;
     }
-    
+
     .model-card__name {
         font-size: 16px;
     }
-    
+
     .model-card__status-badge {
         top: 10px;
         right: 10px;
@@ -969,40 +1053,40 @@ ul {
     .model-card__image {
         min-height: 200px;
     }
-    
+
     .model-card__date-box {
         top: 8px;
         left: 8px;
         padding: 8px 10px;
     }
-    
+
     .model-card__month {
         font-size: 16px;
     }
-    
+
     .model-card__day {
         font-size: 20px;
     }
-    
+
     .model-card__type-badge {
         top: 90px;
         left: 8px;
         width: 50px;
         height: 50px;
     }
-    
+
     .model-card__type-text {
         font-size: 10px;
     }
-    
+
     .model-card__footer {
         padding: 10px 12px;
     }
-    
+
     .model-card__name {
         font-size: 14px;
     }
-    
+
     .model-card__status-badge {
         top: 8px;
         right: 8px;
@@ -1023,6 +1107,7 @@ ul {
     font-weight: bold;
     text-align: center;
     margin-bottom: 60px;
+    color: #000000;
 }
 
 .model-list__grid {
@@ -1032,19 +1117,23 @@ ul {
 }
 
 .model-card {
-    background-color: #f5f5f5;
-    border: none;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.98) 100%);
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
     flex-direction: column;
     height: 100%;
+    animation: borderColorShift 4s ease-in-out infinite;
+    box-shadow: 0 2px 8px rgba(44, 222, 236, 0.1);
 }
 
 .model-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(44, 222, 236, 0.3);
+    animation-duration: 2s;
 }
 
 .model-card__image {
@@ -1150,9 +1239,8 @@ ul {
 .model-card__name {
     font-size: 18px;
     font-weight: bold;
-    color: #000000;
+    color: #333;
     display: block;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* ============================================
@@ -1264,6 +1352,7 @@ ul {
     font-weight: bold;
     text-align: center;
     margin-bottom: 40px;
+    color: #2cdeec;
 }
 
 .model-detail__info {
@@ -1282,6 +1371,7 @@ ul {
     font-weight: bold;
     text-align: center;
     margin-bottom: 40px;
+    color: #2cdeec;
 }
 
 .model-detail__events-grid {
@@ -1294,10 +1384,11 @@ ul {
 
 .model-detail__event-card {
     background-color: #fff;
-    border: 1px solid #e5e5e5;
+    border: 2px solid #2cdeec;
     border-radius: 8px;
     padding: 24px;
     text-align: center;
+    animation: borderColorShift 4s ease-in-out infinite;
 }
 
 .model-detail__event-date {
@@ -1497,6 +1588,7 @@ ul {
 .event-detail__title {
     font-size: 32px;
     font-weight: bold;
+    color: #2cdeec;
 }
 
 .event-detail__models {
@@ -1507,6 +1599,7 @@ ul {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 20px;
+    color: #2cdeec;
 }
 
 .event-detail__models-grid {
@@ -1516,10 +1609,11 @@ ul {
 }
 
 .event-detail__model-card {
-    border: none;
+    border: 2px solid #2cdeec;
     border-radius: 8px;
     padding: 16px;
     text-align: center;
+    animation: borderColorShift 4s ease-in-out infinite;
 }
 
 .event-detail__model-image {
@@ -1572,6 +1666,7 @@ ul {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 20px;
+    color: #2cdeec;
 }
 
 .event-detail__location-info-row {
@@ -1612,14 +1707,15 @@ ul {
     font-weight: bold;
     margin-bottom: 24px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #111;
+    border-bottom: 2px solid #2cdeec;
+    color: #2cdeec;
 }
 
 .event-detail__section-subtitle {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 24px;
-    color: #333;
+    color: #2cdeec;
 }
 
 .event-detail__schedule {
@@ -1772,14 +1868,14 @@ ul {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #333;
+    color: #2cdeec;
 }
 
 .event-detail__reservation-flow-subtitle {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #333;
+    color: #2cdeec;
 }
 
 .event-detail__reservation-steps {
@@ -1866,6 +1962,7 @@ ul {
     font-weight: bold;
     text-align: center;
     margin-bottom: 60px;
+    color: #000000;
 }
 
 .contact__form {
@@ -1948,6 +2045,7 @@ ul {
     font-weight: bold;
     text-align: center;
     margin-bottom: 60px;
+    color: #000000;
 }
 
 .qa__note {
@@ -2062,6 +2160,7 @@ ul {
     font-weight: bold;
     text-align: center;
     margin-bottom: 40px;
+    color: #2cdeec;
 }
 
 .rules__intro {
@@ -2130,6 +2229,7 @@ ul {
     font-weight: bold;
     text-align: center;
     margin-bottom: 60px;
+    color: #000000;
 }
 
 .recruitment__hero {
@@ -2175,6 +2275,7 @@ ul {
     font-weight: bold;
     margin-bottom: 24px;
     text-align: center;
+    color: #2cdeec;
 }
 
 .recruitment__hero-text {
@@ -2230,6 +2331,7 @@ ul {
     font-weight: bold;
     text-align: center;
     margin-bottom: 60px;
+    color: #2cdeec;
 }
 
 .application__form {
@@ -2246,7 +2348,8 @@ ul {
     font-weight: bold;
     margin-bottom: 24px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #111;
+    border-bottom: 2px solid #2cdeec;
+    color: #2cdeec;
 }
 
 .application__form-group {
@@ -2330,6 +2433,7 @@ ul {
     font-weight: bold;
     text-align: center;
     margin-bottom: 60px;
+    color: #000000;
 }
 
 .first-timers__content {
@@ -2346,7 +2450,8 @@ ul {
     font-weight: bold;
     margin-bottom: 24px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #111;
+    border-bottom: 2px solid #2cdeec;
+    color: #2cdeec;
 }
 
 .first-timers__text {
@@ -2372,14 +2477,15 @@ ul {
    ============================================ */
 .top-description {
     padding: 80px 0;
-    background-color: #fff;
+    background: transparent;
 }
 
 .top-description__title {
     font-size: 32px;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 24px;
+    color: #000000;
 }
 
 .top-description__text {
@@ -2392,13 +2498,28 @@ ul {
 
 .top-news {
     padding: 60px 0 60px 0;
-    background-color: #f5f5f5;
+    background: transparent;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+}
+
+.top-news::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            rgba(44, 222, 236, 0.4) 0%,
+            rgba(255, 134, 245, 0.4) 100%);
 }
 
 .top-news__title {
     font-size: 48px;
     font-weight: bold;
     margin-bottom: 40px;
+    color: #111;
 }
 
 .top-news__list {
@@ -2408,7 +2529,7 @@ ul {
 
 .top-news__item {
     padding: 20px 0;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     font-size: 16px;
     display: flex;
     gap: 24px;
@@ -2420,7 +2541,7 @@ ul {
 }
 
 .top-news__date {
-    color: #666;
+    color: #111;
     font-size: 14px;
     min-width: 100px;
     flex-shrink: 0;
@@ -2518,6 +2639,58 @@ ul {
     .top-news__date {
         min-width: auto;
     }
+
+    .top-description__title {
+        font-size: 24px;
+    }
+
+    .event-list {
+        padding-top: 40px;
+    }
+
+    .model-list {
+        padding-top: 40px;
+    }
+
+    .first-timers {
+        padding-top: 40px;
+    }
+
+    .qa {
+        padding-top: 40px;
+    }
+
+    .contact {
+        padding-top: 40px;
+    }
+
+    .recruitment {
+        padding-top: 40px;
+    }
+
+    .event-list__title {
+        font-size: 32px;
+    }
+
+    .model-list__title {
+        font-size: 32px;
+    }
+
+    .first-timers__title {
+        font-size: 32px;
+    }
+
+    .qa__title {
+        font-size: 32px;
+    }
+
+    .contact__title {
+        font-size: 32px;
+    }
+
+    .recruitment__title {
+        font-size: 32px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -2571,3 +2744,175 @@ ul {
     }
 }
 
+/* ============================================
+   Card Border Color Animation
+   ============================================ */
+@keyframes borderColorShift {
+    0% {
+        border-color: #2cdeec;
+    }
+
+    50% {
+        border-color: #ff86f5;
+    }
+
+    100% {
+        border-color: #2cdeec;
+    }
+}
+
+/* Staggered animation delays for event cards */
+.event-card:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.event-card:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.event-card:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.event-card:nth-child(4) {
+    animation-delay: 1.5s;
+}
+
+.event-card:nth-child(5) {
+    animation-delay: 2s;
+}
+
+.event-card:nth-child(6) {
+    animation-delay: 2.5s;
+}
+
+.event-card:nth-child(7) {
+    animation-delay: 3s;
+}
+
+.event-card:nth-child(8) {
+    animation-delay: 3.5s;
+}
+
+.event-card:nth-child(9) {
+    animation-delay: 0s;
+}
+
+.event-card:nth-child(10) {
+    animation-delay: 0.5s;
+}
+
+.event-card:nth-child(11) {
+    animation-delay: 1s;
+}
+
+.event-card:nth-child(12) {
+    animation-delay: 1.5s;
+}
+
+/* Staggered animation delays for model cards */
+.model-card:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.model-card:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.model-card:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.model-card:nth-child(4) {
+    animation-delay: 1.5s;
+}
+
+.model-card:nth-child(5) {
+    animation-delay: 2s;
+}
+
+.model-card:nth-child(6) {
+    animation-delay: 2.5s;
+}
+
+.model-card:nth-child(7) {
+    animation-delay: 3s;
+}
+
+.model-card:nth-child(8) {
+    animation-delay: 3.5s;
+}
+
+.model-card:nth-child(9) {
+    animation-delay: 0s;
+}
+
+.model-card:nth-child(10) {
+    animation-delay: 0.5s;
+}
+
+.model-card:nth-child(11) {
+    animation-delay: 1s;
+}
+
+.model-card:nth-child(12) {
+    animation-delay: 1.5s;
+}
+
+/* Staggered animation delays for model detail event cards */
+.model-detail__event-card:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.model-detail__event-card:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.model-detail__event-card:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.model-detail__event-card:nth-child(4) {
+    animation-delay: 1.5s;
+}
+
+.model-detail__event-card:nth-child(5) {
+    animation-delay: 2s;
+}
+
+.model-detail__event-card:nth-child(6) {
+    animation-delay: 2.5s;
+}
+
+/* Staggered animation delays for event detail model cards */
+.event-detail__model-card:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.event-detail__model-card:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.event-detail__model-card:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.event-detail__model-card:nth-child(4) {
+    animation-delay: 1.5s;
+}
+
+.event-detail__model-card:nth-child(5) {
+    animation-delay: 2s;
+}
+
+.event-detail__model-card:nth-child(6) {
+    animation-delay: 2.5s;
+}
+
+.event-detail__model-card:nth-child(7) {
+    animation-delay: 3s;
+}
+
+.event-detail__model-card:nth-child(8) {
+    animation-delay: 3.5s;
+}

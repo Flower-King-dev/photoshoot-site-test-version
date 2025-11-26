@@ -91,5 +91,110 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+
+    // Falling Petals Effect
+    createFallingPetals();
 });
+
+// Falling Petals Effect
+function createFallingPetals() {
+    // Check if container already exists
+    let container = document.querySelector('.petals-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.className = 'petals-container';
+        document.body.appendChild(container);
+    }
+
+    // Flower images array
+    const flowerImages = [
+        'flower/f11.png',
+        'flower/f12.png',
+        'flower/f13.png',
+        'flower/f14.png',
+        'flower/f15.png',
+        'flower/f16.png'
+    ];
+
+    // Number of petals to create
+    const petalCount = 20;
+    
+    // Create petals
+    for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'falling-petal';
+        
+        const img = document.createElement('img');
+        // Randomly select a flower image
+        const randomFlower = flowerImages[Math.floor(Math.random() * flowerImages.length)];
+        img.src = randomFlower;
+        img.alt = 'Petal';
+        
+        petal.appendChild(img);
+        
+        // Random horizontal position
+        const leftPosition = Math.random() * 100;
+        petal.style.left = leftPosition + '%';
+        
+        // Random initial vertical position (from top to bottom of viewport)
+        const viewportHeight = window.innerHeight;
+        const initialY = -150 + Math.random() * (viewportHeight + 300); // -150px to (viewportHeight + 150px)
+        petal.style.setProperty('--initial-y', initialY + 'px');
+        petal.style.top = '0px'; // Start at top of container, use translateY for position
+        
+        // Random animation duration (10-20 seconds for variety)
+        const duration = 10 + Math.random() * 10;
+        petal.style.animationDuration = duration + 's';
+        
+        // Minimal delay to stagger the start slightly (0 to 2 seconds max)
+        const delay = Math.random() * 2;
+        petal.style.animationDelay = delay + 's';
+        
+        // Random size variation (15px to 35px)
+        const size = 15 + Math.random() * 20;
+        petal.style.width = size + 'px';
+        petal.style.height = size + 'px';
+        
+        // Random rotation speed (360deg to 720deg for multiple rotations)
+        const rotationSpeed = 360 + (Math.random() * 360);
+        petal.style.setProperty('--rotation', rotationSpeed + 'deg');
+        
+        container.appendChild(petal);
+    }
+    
+    // Update container height to match body/document height
+    function updateContainerHeight() {
+        const bodyHeight = Math.max(
+            document.body.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.clientHeight,
+            document.documentElement.scrollHeight,
+            document.documentElement.offsetHeight,
+            window.innerHeight
+        );
+        container.style.height = bodyHeight + 'px';
+        // Update CSS variable for animation
+        document.documentElement.style.setProperty('--container-height', bodyHeight + 'px');
+    }
+    
+    // Update on load, resize, and scroll
+    updateContainerHeight();
+    
+    // Use requestAnimationFrame for smooth updates
+    let lastHeight = 0;
+    function checkHeight() {
+        const currentHeight = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+        );
+        if (currentHeight !== lastHeight) {
+            updateContainerHeight();
+            lastHeight = currentHeight;
+        }
+        requestAnimationFrame(checkHeight);
+    }
+    requestAnimationFrame(checkHeight);
+    
+    window.addEventListener('resize', updateContainerHeight);
+}
 
