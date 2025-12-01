@@ -17,14 +17,7 @@ html {
 body {
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     color: #111;
-    background: linear-gradient(90deg,
-            #2cdeec 0%,
-            rgba(44, 222, 236, 0.2) 20%,
-            rgba(255, 255, 255, 0.30) 50%,
-            rgba(255, 134, 245, 0.4) 80%,
-            #ff86f5 100%);
-    background-attachment: fixed;
-    background-size: 100% 100%;
+    background-color: #ffffff;
     line-height: 1.6;
     overflow-x: hidden;
     width: 100%;
@@ -66,54 +59,10 @@ ul {
 }
 
 /* ============================================
-   Falling Petals Effect
-   ============================================ */
-.petals-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    min-height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-}
-
-.falling-petal {
-    position: absolute;
-    pointer-events: none;
-    user-select: none;
-    opacity: 0.6;
-    will-change: transform;
-    animation: fallDown linear infinite;
-}
-
-.falling-petal img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-@keyframes fallDown {
-    0% {
-        transform: translateY(var(--initial-y, -150px)) rotate(0deg);
-        opacity: 0.6;
-    }
-
-    100% {
-        transform: translateY(calc(var(--container-height, 100vh) + 150px)) rotate(var(--rotation, 360deg));
-        opacity: 0.6;
-    }
-}
-
-/* ============================================
    Header
    ============================================ */
 .header {
-    background-color: #ffffff38;
-    backdrop-filter: blur(10px);
+    background-color: #ffffff;
     position: fixed;
     top: 0;
     left: 0;
@@ -236,15 +185,11 @@ ul {
     top: 80px;
     left: 0;
     right: 0;
-    background: linear-gradient(90deg,
-            #2cdeec 0%,
-            rgba(44, 222, 236, 1) 20%,
-            rgba(255, 134, 245, 1) 80%,
-            #ff86f5 100%);
+    background-color: #ffffff;
     border-bottom: 1px solid #e5e5e5;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #ffffff;
+    color: #111;
 }
 
 .header__mobile-menu--open {
@@ -267,11 +212,10 @@ ul {
    Footer
    ============================================ */
 .footer {
-    background: linear-gradient(174deg, rgb(0 52 59) 0%, rgb(7 25 28 / 97%) 25%, rgb(0 14 22 / 99%) 50%, rgb(11 2 12) 75%, rgb(16 6 16) 100%);
+    background:  rgb(0 14 22 / 99%);
     color: #fff;
     padding: 80px 0 30px;
     margin-top: 0;
-    backdrop-filter: blur(20px);
     position: relative;
     overflow: hidden;
 }
@@ -471,11 +415,11 @@ ul {
    ============================================ */
 .hero {
     color: #fff;
-    padding: 80px 0 0 0;
+    padding: 0;
     text-align: center;
     position: relative;
     overflow: hidden;
-    height: 650px;
+    height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -485,40 +429,43 @@ ul {
 
 .hero__carousel {
     width: 100%;
-    height: 100%;
+    height: 600px;
     position: relative;
-    perspective: 1400px;
-    perspective-origin: center center;
     overflow: hidden;
     max-width: 100%;
 }
 
+.hero__arrow {
+    display: none;
+}
+
 .hero__carousel-container {
-    position: absolute;
-    width: 100%;
+    display: flex;
+    align-items: center;
     height: 100%;
-    transform-style: preserve-3d;
-    animation: rotateCarousel 20s linear infinite;
+    animation: slideHorizontal 120s linear infinite;
     will-change: transform;
+    touch-action: pan-y pinch-zoom;
+}
+
+.hero__carousel-container.paused {
+    animation-play-state: paused;
 }
 
 .hero__slide {
-    position: absolute;
-    width: 240px;
-    height: 320px;
-    left: 50%;
-    top: 50%;
-    margin-left: -120px;
-    margin-top: -160px;
-    transform-style: preserve-3d;
+    flex-shrink: 0;
+    width: 500px;
+    height: 600px;
+    margin-right: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero__card {
     width: 100%;
     height: 100%;
     position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.3s ease;
 }
 
 .hero__image {
@@ -526,190 +473,121 @@ ul {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 0;
+    box-shadow: none;
     display: block;
 }
 
-/* Position each slide around the circle */
-.hero__slide:nth-child(1) {
-    transform: rotateY(0deg) translateZ(520px);
-}
-
-.hero__slide:nth-child(2) {
-    transform: rotateY(45deg) translateZ(520px);
-}
-
-.hero__slide:nth-child(3) {
-    transform: rotateY(90deg) translateZ(520px);
-}
-
-.hero__slide:nth-child(4) {
-    transform: rotateY(135deg) translateZ(520px);
-}
-
-.hero__slide:nth-child(5) {
-    transform: rotateY(180deg) translateZ(520px);
-}
-
-.hero__slide:nth-child(6) {
-    transform: rotateY(225deg) translateZ(520px);
-}
-
-.hero__slide:nth-child(7) {
-    transform: rotateY(270deg) translateZ(520px);
-}
-
-.hero__slide:nth-child(8) {
-    transform: rotateY(315deg) translateZ(520px);
-}
-
-/* Add slight random tilt to each card for more dynamic look */
-.hero__slide:nth-child(1) .hero__card {
-    transform: rotateY(0deg) rotateX(5deg) rotateZ(-3deg);
-}
-
-.hero__slide:nth-child(2) .hero__card {
-    transform: rotateY(0deg) rotateX(-4deg) rotateZ(2deg);
-}
-
-.hero__slide:nth-child(3) .hero__card {
-    transform: rotateY(0deg) rotateX(3deg) rotateZ(-2deg);
-}
-
-.hero__slide:nth-child(4) .hero__card {
-    transform: rotateY(0deg) rotateX(-5deg) rotateZ(3deg);
-}
-
-.hero__slide:nth-child(5) .hero__card {
-    transform: rotateY(0deg) rotateX(4deg) rotateZ(-2deg);
-}
-
-.hero__slide:nth-child(6) .hero__card {
-    transform: rotateY(0deg) rotateX(-3deg) rotateZ(2deg);
-}
-
-.hero__slide:nth-child(7) .hero__card {
-    transform: rotateY(0deg) rotateX(5deg) rotateZ(-3deg);
-}
-
-.hero__slide:nth-child(8) .hero__card {
-    transform: rotateY(0deg) rotateX(-4deg) rotateZ(2deg);
-}
-
-/* 3D Rotation Animation */
-@keyframes rotateCarousel {
+/* Horizontal Sliding Animation */
+@keyframes slideHorizontal {
     0% {
-        transform: rotateY(0deg);
+        transform: translateX(0);
     }
-
     100% {
-        transform: rotateY(360deg);
+        transform: translateX(calc(-500px * 8 - 24px * 8));
+    }
+}
+
+@keyframes slideHorizontalTablet {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-350px * 8 - 16px * 8));
+    }
+}
+
+@keyframes slideHorizontalMobile {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-280px * 8 - 12px * 8));
     }
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .hero {
-        height: 550px;
-        padding: 60px 0 0 0;
+        height: 420px;
+        padding: 0;
         overflow: hidden;
     }
-
+    
     .hero__carousel {
-        perspective: 1000px;
-        overflow: hidden;
+        height: 420px;
     }
 
     .hero__slide {
-        width: 200px;
-        height: 260px;
-        margin-left: -100px;
-        margin-top: -130px;
+        width: 350px;
+        height: 420px;
+        margin-right: 16px;
+    }
+    
+    .hero__image {
+        border-radius: 0;
     }
 
-    .hero__slide:nth-child(1) {
-        transform: rotateY(0deg) translateZ(360px);
+    .hero__arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
     }
 
-    .hero__slide:nth-child(2) {
-        transform: rotateY(45deg) translateZ(360px);
+    .hero__arrow--left {
+        left: 10px;
     }
 
-    .hero__slide:nth-child(3) {
-        transform: rotateY(90deg) translateZ(360px);
+    .hero__arrow--right {
+        right: 10px;
     }
 
-    .hero__slide:nth-child(4) {
-        transform: rotateY(135deg) translateZ(360px);
+    .hero__carousel-container {
+        animation: slideHorizontalTablet 105s linear infinite;
     }
 
-    .hero__slide:nth-child(5) {
-        transform: rotateY(180deg) translateZ(360px);
-    }
-
-    .hero__slide:nth-child(6) {
-        transform: rotateY(225deg) translateZ(360px);
-    }
-
-    .hero__slide:nth-child(7) {
-        transform: rotateY(270deg) translateZ(360px);
-    }
-
-    .hero__slide:nth-child(8) {
-        transform: rotateY(315deg) translateZ(360px);
+    .recruitment__hero-title {
+        font-size: 28px;
     }
 }
 
 @media (max-width: 480px) {
     .hero {
-        height: 450px;
-        padding: 50px 0 0 0;
+        height: 336px;
+        padding: 0;
         overflow: hidden;
     }
-
+    
     .hero__carousel {
-        perspective: 700px;
-        overflow: hidden;
+        height: 336px;
     }
 
     .hero__slide {
-        width: 160px;
-        height: 210px;
-        margin-left: -80px;
-        margin-top: -105px;
+        width: 280px;
+        height: 336px;
+        margin-right: 12px;
+    }
+    
+    .hero__image {
+        border-radius: 0;
     }
 
-    .hero__slide:nth-child(1) {
-        transform: rotateY(0deg) translateZ(280px);
+    .hero__arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
     }
 
-    .hero__slide:nth-child(2) {
-        transform: rotateY(45deg) translateZ(280px);
+    .hero__arrow--left {
+        left: 5px;
     }
 
-    .hero__slide:nth-child(3) {
-        transform: rotateY(90deg) translateZ(280px);
+    .hero__arrow--right {
+        right: 5px;
     }
 
-    .hero__slide:nth-child(4) {
-        transform: rotateY(135deg) translateZ(280px);
-    }
-
-    .hero__slide:nth-child(5) {
-        transform: rotateY(180deg) translateZ(280px);
-    }
-
-    .hero__slide:nth-child(6) {
-        transform: rotateY(225deg) translateZ(280px);
-    }
-
-    .hero__slide:nth-child(7) {
-        transform: rotateY(270deg) translateZ(280px);
-    }
-
-    .hero__slide:nth-child(8) {
-        transform: rotateY(315deg) translateZ(280px);
+    .hero__carousel-container {
+        animation: slideHorizontalMobile 90s linear infinite;
     }
 }
 
@@ -756,7 +634,7 @@ ul {
     border-radius: 8px;
     background-color: #fff;
     color: #111;
-    border: 2px solid #ffffff00;
+    border: 2px solid #000000;
     cursor: pointer;
     transition: all 0.3s;
     font-size: 14px;
@@ -2233,8 +2111,9 @@ ul {
 }
 
 .recruitment__hero {
-    background-color: #111;
-    color: #fff;
+    background-color: transparent;
+    /* 背景を自由に設定可能 - background-image, background-color などを設定してください */
+    color: #111;
     padding: 80px 40px;
     margin-bottom: 60px;
     position: relative;
@@ -2248,7 +2127,8 @@ ul {
     font-size: 120px;
     font-weight: bold;
     opacity: 0.1;
-    color: #fff;
+    color: #111;
+    /* 背景に合わせて色を調整してください */
 }
 
 .recruitment__hero::before {
@@ -2450,8 +2330,8 @@ ul {
     font-weight: bold;
     margin-bottom: 24px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #2cdeec;
-    color: #2cdeec;
+    border-bottom: 1px solid #999191;
+    color: #000000;
 }
 
 .first-timers__text {
@@ -2510,9 +2390,7 @@ ul {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg,
-            rgba(44, 222, 236, 0.4) 0%,
-            rgba(255, 134, 245, 0.4) 100%);
+    background-color: #e5e5e5;
 }
 
 .top-news__title {
@@ -2582,7 +2460,35 @@ ul {
     }
 
     .model-detail__gallery {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 16px;
+    }
+
+    .model-detail__main-image {
+        height: auto;
+        max-height: none;
+    }
+
+    .model-detail__side-images {
+        height: 100%;
+        max-height: 100%;
+        overflow-y: auto;
+    }
+
+    .event-detail__gallery {
+        grid-template-columns: 1.5fr 1fr;
+        gap: 16px;
+    }
+
+    .event-detail__main-image {
+        height: auto;
+        max-height: none;
+    }
+
+    .event-detail__side-images {
+        height: 100%;
+        max-height: 100%;
+        overflow-y: auto;
     }
 
     .model-detail__thumbnails {
@@ -2616,6 +2522,14 @@ ul {
     .recruitment__hero::before,
     .recruitment__hero::after {
         font-size: 60px;
+    }
+
+    .recruitment__hero-title {
+        font-size: 20px;
+    }
+
+    .recruitment__hero-highlight {
+        font-size: 19px;
     }
 
     .footer__content {
