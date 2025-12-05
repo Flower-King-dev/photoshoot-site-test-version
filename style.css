@@ -17,14 +17,7 @@ html {
 body {
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     color: #111;
-    background: linear-gradient(90deg,
-            #2cdeec 0%,
-            rgba(44, 222, 236, 0.2) 20%,
-            rgba(255, 255, 255, 0.30) 50%,
-            rgba(255, 134, 245, 0.4) 80%,
-            #ff86f5 100%);
-    background-attachment: fixed;
-    background-size: 100% 100%;
+    background-color: #ffffff;
     line-height: 1.6;
     overflow-x: hidden;
     width: 100%;
@@ -66,54 +59,10 @@ ul {
 }
 
 /* ============================================
-   Falling Petals Effect
-   ============================================ */
-.petals-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    min-height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-}
-
-.falling-petal {
-    position: absolute;
-    pointer-events: none;
-    user-select: none;
-    opacity: 0.6;
-    will-change: transform;
-    animation: fallDown linear infinite;
-}
-
-.falling-petal img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-@keyframes fallDown {
-    0% {
-        transform: translateY(var(--initial-y, -150px)) rotate(0deg);
-        opacity: 0.6;
-    }
-
-    100% {
-        transform: translateY(calc(var(--container-height, 100vh) + 150px)) rotate(var(--rotation, 360deg));
-        opacity: 0.6;
-    }
-}
-
-/* ============================================
    Header
    ============================================ */
 .header {
-    background-color: #ffffff38;
-    backdrop-filter: blur(10px);
+    background-color: #ffffff;
     position: fixed;
     top: 0;
     left: 0;
@@ -236,15 +185,11 @@ ul {
     top: 80px;
     left: 0;
     right: 0;
-    background: linear-gradient(90deg,
-            #2cdeec 0%,
-            rgba(44, 222, 236, 1) 20%,
-            rgba(255, 134, 245, 1) 80%,
-            #ff86f5 100%);
+    background-color: #ffffff;
     border-bottom: 1px solid #e5e5e5;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #ffffff;
+    color: #111;
 }
 
 .header__mobile-menu--open {
@@ -267,11 +212,10 @@ ul {
    Footer
    ============================================ */
 .footer {
-    background: linear-gradient(174deg, rgb(0 52 59) 0%, rgb(7 25 28 / 97%) 25%, rgb(0 14 22 / 99%) 50%, rgb(11 2 12) 75%, rgb(16 6 16) 100%);
+    background: rgb(0 14 22 / 99%);
     color: #fff;
     padding: 80px 0 30px;
     margin-top: 0;
-    backdrop-filter: blur(20px);
     position: relative;
     overflow: hidden;
 }
@@ -471,11 +415,11 @@ ul {
    ============================================ */
 .hero {
     color: #fff;
-    padding: 80px 0 0 0;
+    padding: 0;
     text-align: center;
     position: relative;
     overflow: hidden;
-    height: 650px;
+    height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -485,40 +429,43 @@ ul {
 
 .hero__carousel {
     width: 100%;
-    height: 100%;
+    height: 600px;
     position: relative;
-    perspective: 1400px;
-    perspective-origin: center center;
     overflow: hidden;
     max-width: 100%;
 }
 
+.hero__arrow {
+    display: none;
+}
+
 .hero__carousel-container {
-    position: absolute;
-    width: 100%;
+    display: flex;
+    align-items: center;
     height: 100%;
-    transform-style: preserve-3d;
-    animation: rotateCarousel 20s linear infinite;
+    animation: slideHorizontal 120s linear infinite;
     will-change: transform;
+    touch-action: pan-y pinch-zoom;
+}
+
+.hero__carousel-container.paused {
+    animation-play-state: paused;
 }
 
 .hero__slide {
-    position: absolute;
-    width: 240px;
-    height: 320px;
-    left: 50%;
-    top: 50%;
-    margin-left: -120px;
-    margin-top: -160px;
-    transform-style: preserve-3d;
+    flex-shrink: 0;
+    width: 500px;
+    height: 600px;
+    margin-right: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero__card {
     width: 100%;
     height: 100%;
     position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.3s ease;
 }
 
 .hero__image {
@@ -526,190 +473,120 @@ ul {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 0;
+    box-shadow: none;
     display: block;
 }
 
-/* Position each slide around the circle */
-.hero__slide:nth-child(1) {
-    transform: rotateY(0deg) translateZ(520px);
-}
-
-.hero__slide:nth-child(2) {
-    transform: rotateY(45deg) translateZ(520px);
-}
-
-.hero__slide:nth-child(3) {
-    transform: rotateY(90deg) translateZ(520px);
-}
-
-.hero__slide:nth-child(4) {
-    transform: rotateY(135deg) translateZ(520px);
-}
-
-.hero__slide:nth-child(5) {
-    transform: rotateY(180deg) translateZ(520px);
-}
-
-.hero__slide:nth-child(6) {
-    transform: rotateY(225deg) translateZ(520px);
-}
-
-.hero__slide:nth-child(7) {
-    transform: rotateY(270deg) translateZ(520px);
-}
-
-.hero__slide:nth-child(8) {
-    transform: rotateY(315deg) translateZ(520px);
-}
-
-/* Add slight random tilt to each card for more dynamic look */
-.hero__slide:nth-child(1) .hero__card {
-    transform: rotateY(0deg) rotateX(5deg) rotateZ(-3deg);
-}
-
-.hero__slide:nth-child(2) .hero__card {
-    transform: rotateY(0deg) rotateX(-4deg) rotateZ(2deg);
-}
-
-.hero__slide:nth-child(3) .hero__card {
-    transform: rotateY(0deg) rotateX(3deg) rotateZ(-2deg);
-}
-
-.hero__slide:nth-child(4) .hero__card {
-    transform: rotateY(0deg) rotateX(-5deg) rotateZ(3deg);
-}
-
-.hero__slide:nth-child(5) .hero__card {
-    transform: rotateY(0deg) rotateX(4deg) rotateZ(-2deg);
-}
-
-.hero__slide:nth-child(6) .hero__card {
-    transform: rotateY(0deg) rotateX(-3deg) rotateZ(2deg);
-}
-
-.hero__slide:nth-child(7) .hero__card {
-    transform: rotateY(0deg) rotateX(5deg) rotateZ(-3deg);
-}
-
-.hero__slide:nth-child(8) .hero__card {
-    transform: rotateY(0deg) rotateX(-4deg) rotateZ(2deg);
-}
-
-/* 3D Rotation Animation */
-@keyframes rotateCarousel {
+/* Horizontal Sliding Animation */
+@keyframes slideHorizontal {
     0% {
-        transform: rotateY(0deg);
+        transform: translateX(0);
     }
 
     100% {
-        transform: rotateY(360deg);
+        transform: translateX(calc(-500px * 8 - 24px * 8));
+    }
+}
+
+@keyframes slideHorizontalTablet {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-350px * 8 - 16px * 8));
+    }
+}
+
+@keyframes slideHorizontalMobile {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-280px * 8 - 12px * 8));
     }
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .hero {
-        height: 550px;
-        padding: 60px 0 0 0;
+        height: 420px;
+        padding: 0;
         overflow: hidden;
     }
 
     .hero__carousel {
-        perspective: 1000px;
-        overflow: hidden;
+        height: 420px;
     }
 
     .hero__slide {
-        width: 200px;
-        height: 260px;
-        margin-left: -100px;
-        margin-top: -130px;
+        width: 350px;
+        height: 420px;
+        margin-right: 16px;
     }
 
-    .hero__slide:nth-child(1) {
-        transform: rotateY(0deg) translateZ(360px);
+    .hero__image {
+        border-radius: 0;
     }
 
-    .hero__slide:nth-child(2) {
-        transform: rotateY(45deg) translateZ(360px);
+    .hero__arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
     }
 
-    .hero__slide:nth-child(3) {
-        transform: rotateY(90deg) translateZ(360px);
+    .hero__arrow--left {
+        left: 10px;
     }
 
-    .hero__slide:nth-child(4) {
-        transform: rotateY(135deg) translateZ(360px);
+    .hero__arrow--right {
+        right: 10px;
     }
 
-    .hero__slide:nth-child(5) {
-        transform: rotateY(180deg) translateZ(360px);
-    }
-
-    .hero__slide:nth-child(6) {
-        transform: rotateY(225deg) translateZ(360px);
-    }
-
-    .hero__slide:nth-child(7) {
-        transform: rotateY(270deg) translateZ(360px);
-    }
-
-    .hero__slide:nth-child(8) {
-        transform: rotateY(315deg) translateZ(360px);
+    .hero__carousel-container {
+        animation: slideHorizontalTablet 105s linear infinite;
     }
 }
 
 @media (max-width: 480px) {
     .hero {
-        height: 450px;
-        padding: 50px 0 0 0;
+        height: 336px;
+        padding: 0;
         overflow: hidden;
     }
 
     .hero__carousel {
-        perspective: 700px;
-        overflow: hidden;
+        height: 336px;
     }
 
     .hero__slide {
-        width: 160px;
-        height: 210px;
-        margin-left: -80px;
-        margin-top: -105px;
+        width: 280px;
+        height: 336px;
+        margin-right: 12px;
     }
 
-    .hero__slide:nth-child(1) {
-        transform: rotateY(0deg) translateZ(280px);
+    .hero__image {
+        border-radius: 0;
     }
 
-    .hero__slide:nth-child(2) {
-        transform: rotateY(45deg) translateZ(280px);
+    .hero__arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
     }
 
-    .hero__slide:nth-child(3) {
-        transform: rotateY(90deg) translateZ(280px);
+    .hero__arrow--left {
+        left: 5px;
     }
 
-    .hero__slide:nth-child(4) {
-        transform: rotateY(135deg) translateZ(280px);
+    .hero__arrow--right {
+        right: 5px;
     }
 
-    .hero__slide:nth-child(5) {
-        transform: rotateY(180deg) translateZ(280px);
-    }
-
-    .hero__slide:nth-child(6) {
-        transform: rotateY(225deg) translateZ(280px);
-    }
-
-    .hero__slide:nth-child(7) {
-        transform: rotateY(270deg) translateZ(280px);
-    }
-
-    .hero__slide:nth-child(8) {
-        transform: rotateY(315deg) translateZ(280px);
+    .hero__carousel-container {
+        animation: slideHorizontalMobile 90s linear infinite;
     }
 }
 
@@ -756,7 +633,7 @@ ul {
     border-radius: 8px;
     background-color: #fff;
     color: #111;
-    border: 2px solid #ffffff00;
+    border: 2px solid #000000;
     cursor: pointer;
     transition: all 0.3s;
     font-size: 14px;
@@ -1106,7 +983,7 @@ ul {
     font-size: 48px;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     color: #000000;
 }
 
@@ -2037,7 +1914,8 @@ ul {
    Q&A Page
    ============================================ */
 .qa {
-    padding: 60px 0;
+    padding: 50px 0;
+    background: #ffffff;
 }
 
 .qa__title {
@@ -2052,25 +1930,26 @@ ul {
     text-align: center;
     color: #d32f2f;
     font-size: 14px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .qa__list {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
 .qa__item {
+    background-color: #ffffff;
     border: 1px solid #e5e5e5;
     border-radius: 8px;
     margin-bottom: 16px;
-    background-color: #fff;
     overflow: hidden;
-    transition: box-shadow 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .qa__item:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .qa__item:last-child {
@@ -2078,17 +1957,22 @@ ul {
 }
 
 .qa__question {
-    padding: 20px 24px;
+    padding: 24px 28px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.3s;
     user-select: none;
+    background-color: #ffffff;
 }
 
 .qa__question:hover {
     background-color: #f9f9f9;
+}
+
+.qa__item--active .qa__question {
+    background-color: #f5f5f5;
 }
 
 .qa__question-text {
@@ -2097,6 +1981,7 @@ ul {
     color: #111;
     flex: 1;
     padding-right: 20px;
+    line-height: 1.5;
 }
 
 .qa__toggle {
@@ -2116,8 +2001,12 @@ ul {
 }
 
 .qa__item--active .qa__toggle {
-    background-color: #111;
+    background-color: #1a1a1a;
     color: #fff;
+}
+
+.qa__toggle::before {
+    content: '+';
 }
 
 .qa__item--active .qa__toggle::before {
@@ -2128,16 +2017,17 @@ ul {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-    padding: 0 24px;
+    padding: 0 28px;
+    background: #fff;
 }
 
 .qa__item--active .qa__answer {
-    padding: 16px 24px 24px 24px;
+    padding: 20px 28px 28px 28px;
 }
 
 .qa__answer p {
     font-size: 16px;
-    line-height: 1.8;
+    line-height: 2;
     color: #666;
     margin: 0;
     padding: 0;
@@ -2221,109 +2111,305 @@ ul {
    Model Recruitment Page
    ============================================ */
 .recruitment {
-    padding: 60px 0;
+    padding: 40px 0;
+    background: #ffffff;
 }
 
-.recruitment__title {
-    font-size: 48px;
+/* Header Section */
+.recruitment__header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 40px 0;
+}
+
+.recruitment__header-content {
+    flex: 1;
+}
+
+.recruitment__header-subtitle {
+    font-size: 24px;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 400;
+}
+
+.recruitment__header-title {
+    font-size: 60px;
     font-weight: bold;
-    text-align: center;
-    margin-bottom: 60px;
     color: #000000;
+    margin-bottom: 24px;
+    line-height: 1.3;
 }
 
-.recruitment__hero {
-    background-color: #111;
-    color: #fff;
-    padding: 80px 40px;
-    margin-bottom: 60px;
-    position: relative;
+.recruitment__concept {
+    margin-top: 20px;
+}
+
+.recruitment__concept-title {
+    font-size: 44px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 12px;
+}
+
+.recruitment__concept-text {
+    font-size: 16px;
+    line-height: 2;
+    color: #333;
+}
+
+.recruitment__header-image {
+    flex: 0 0 500px;
+    aspect-ratio: 4/3;
     overflow: hidden;
 }
 
-.recruitment__hero::before,
-.recruitment__hero::after {
-    content: "写真";
-    position: absolute;
-    font-size: 120px;
+.recruitment__image-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background-color: #333;
+    border-radius: 8px;
+}
+
+.recruitment__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+/* Produce Your Own Session Section */
+.recruitment__produce-section {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 50px;
+    padding: 40px 0;
+}
+
+.recruitment__produce-image {
+    flex: 0 0 500px;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+}
+
+.recruitment__produce-content {
+    flex: 1;
+}
+
+.recruitment__produce-title {
+    font-size: 44px;
     font-weight: bold;
-    opacity: 0.1;
-    color: #fff;
+    color: #000000;
+    margin-bottom: 16px;
 }
 
-.recruitment__hero::before {
-    left: 40px;
-    top: 40px;
-    writing-mode: vertical-rl;
-}
-
-.recruitment__hero::after {
-    right: 40px;
-    bottom: 40px;
-    writing-mode: vertical-rl;
-}
-
-.recruitment__hero-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-}
-
-.recruitment__hero-title {
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 24px;
-    text-align: center;
-    color: #2cdeec;
-}
-
-.recruitment__hero-text {
+.recruitment__produce-text {
     font-size: 16px;
     line-height: 2;
-    margin-bottom: 24px;
+    color: #333;
 }
 
-.recruitment__hero-highlight {
-    font-size: 24px;
+/* Requirements Table */
+.recruitment__requirements {
+    margin-bottom: 40px;
+}
+
+.recruitment__requirements-table {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recruitment__requirements-col {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #e5e5e5;
+}
+
+.recruitment__requirements-col:last-child {
+    border-right: none;
+}
+
+.recruitment__requirements-header-cell {
+    background: rgb(0 14 22 / 99%);
+    padding: 16px 12px;
+    text-align: center;
+}
+
+.recruitment__requirements-content-cell {
+    background-color: #f5f5f5;
+    padding: 20px 12px;
+    min-height: 180px;
+    flex: 1;
+}
+
+.recruitment__requirements-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.recruitment__requirements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recruitment__requirements-list li {
+    font-size: 14px;
+    line-height: 2;
+    color: #333333;
+    margin-bottom: 8px;
+    padding-left: 16px;
+    position: relative;
+}
+
+.recruitment__requirements-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #333333;
+    font-weight: bold;
+}
+
+.recruitment__compensation-highlight {
+    font-size: 28px;
     font-weight: bold;
     text-align: center;
-    margin: 40px 0;
-    color: #ffd700;
+    margin-top: 12px;
+    padding-left: 0 !important;
+    color: #000000;
 }
 
+.recruitment__compensation-highlight::before {
+    display: none;
+}
+
+.recruitment__requirements-bottom-line {
+    width: 100%;
+    height: 2px;
+    margin-top: 0;
+}
+
+/* CTA Button */
 .recruitment__cta {
     text-align: center;
-    margin: 60px 0;
+    margin: 40px 0 0 0;
 }
 
 .recruitment__cta-banner {
     display: inline-block;
-    background-color: #111;
+    background: rgb(0 14 22 / 99%);
     color: #fff;
-    padding: 20px 60px;
+    padding: 18px 50px;
     border-radius: 8px;
     font-size: 20px;
     font-weight: bold;
     transition: opacity 0.3s;
+    text-decoration: none;
 }
 
 .recruitment__cta-banner:hover {
     opacity: 0.9;
 }
 
-.recruitment__cta-note {
-    font-size: 12px;
-    color: #666;
-    margin-top: 12px;
+/* Producer Recruitment Section */
+.recruitment__producer {
+    margin-top: 30px;
+    padding-top: 80px;
+    border-top: 2px solid #e5e5e5;
+}
+
+.recruitment__producer-banner {
+    background: rgb(0 14 22 / 99%);
+    color: #ffffff;
+    padding: 24px;
+    border-radius: 8px;
+    margin-bottom: 60px;
     text-align: center;
+}
+
+.recruitment__producer-banner-subtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.recruitment__producer-banner-title {
+    font-size: 48px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.recruitment__producer-banner-tagline {
+    font-size: 36px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: bold;
+}
+
+.recruitment__producer-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.recruitment__producer-content {
+    display: flex;
+    align-items: flex-end;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.recruitment__producer-text {
+    flex: 1;
+}
+
+.recruitment__producer-intro {
+    font-size: 18px;
+    line-height: 2;
+    color: #333;
+    margin-bottom: 24px;
+}
+
+.recruitment__producer-details {
+    font-size: 16px;
+    line-height: 2;
+    color: #333;
+}
+
+.recruitment__producer-underline {
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 2px;
+}
+
+.recruitment__producer-image {
+    flex: 0 0 500px;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+}
+
+.recruitment__producer-cta {
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 60px;
 }
 
 /* ============================================
    Application Form
    ============================================ */
 .application {
-    padding: 60px 0;
+    padding: 40px 0;
 }
 
 .application__title {
@@ -2425,14 +2511,14 @@ ul {
    First Timers Page
    ============================================ */
 .first-timers {
-    padding: 60px 0;
+    padding: 60px 0 40px 0;
 }
 
 .first-timers__title {
     font-size: 48px;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     color: #000000;
 }
 
@@ -2442,22 +2528,39 @@ ul {
 }
 
 .first-timers__section {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
+    background: #ffffff;
+    padding: 60px 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
 }
 
 .first-timers__section-title {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: bold;
-    margin-bottom: 24px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #2cdeec;
-    color: #2cdeec;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid #2cdeec;
+    color: #000000;
+    position: relative;
+}
+
+.first-timers__section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: #ff86f5;
 }
 
 .first-timers__text {
     font-size: 16px;
-    line-height: 1.8;
-    margin-bottom: 16px;
+    line-height: 2;
+    margin-bottom: 20px;
+    color: #333;
 }
 
 .first-timers__list {
@@ -2510,9 +2613,7 @@ ul {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg,
-            rgba(44, 222, 236, 0.4) 0%,
-            rgba(255, 134, 245, 0.4) 100%);
+    background-color: #e5e5e5;
 }
 
 .top-news__title {
@@ -2582,7 +2683,35 @@ ul {
     }
 
     .model-detail__gallery {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 16px;
+    }
+
+    .model-detail__main-image {
+        height: auto;
+        max-height: none;
+    }
+
+    .model-detail__side-images {
+        height: 100%;
+        max-height: 100%;
+        overflow-y: auto;
+    }
+
+    .event-detail__gallery {
+        grid-template-columns: 1.5fr 1fr;
+        gap: 16px;
+    }
+
+    .event-detail__main-image {
+        height: auto;
+        max-height: none;
+    }
+
+    .event-detail__side-images {
+        height: 100%;
+        max-height: 100%;
+        overflow-y: auto;
     }
 
     .model-detail__thumbnails {
@@ -2609,13 +2738,146 @@ ul {
         min-width: 100px;
     }
 
-    .recruitment__hero {
-        padding: 40px 20px;
+    .recruitment {
+        padding: 30px 0 0 0;
     }
 
-    .recruitment__hero::before,
-    .recruitment__hero::after {
-        font-size: 60px;
+    .recruitment__header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 0;
+        margin-bottom: 0px;
+    }
+
+    .recruitment__header-image {
+        flex: 1;
+        width: 100%;
+    }
+
+    .recruitment__header-title {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .recruitment__produce-section {
+        flex-direction: column-reverse;
+        gap: 20px;
+        padding: 30px 0;
+        margin-bottom: 16px;
+    }
+
+    .recruitment__produce-image {
+        flex: 1;
+        width: 100%;
+    }
+
+    .recruitment__produce-title {
+        font-size: 28px;
+    }
+
+    .recruitment__requirements {
+        margin-bottom: 30px;
+    }
+
+    .recruitment__requirements-table {
+        grid-template-columns: 1fr;
+    }
+
+    .recruitment__requirements-col {
+        border-right: none;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .recruitment__requirements-col:last-child {
+        border-bottom: none;
+    }
+
+    .recruitment__requirements-header-cell {
+        padding: 14px 12px;
+    }
+
+    .recruitment__requirements-title {
+        font-size: 18px;
+    }
+
+    .recruitment__requirements-content-cell {
+        padding: 18px 12px;
+        min-height: auto;
+    }
+
+    .recruitment__compensation-highlight {
+        text-align: left;
+    }
+
+
+    .recruitment__cta {
+        margin: 30px 0;
+    }
+
+    .recruitment__producer {
+        margin-top: 0px;
+        padding-top: 40px;
+    }
+
+    .recruitment__producer-banner {
+        padding: 40px 30px;
+        margin-bottom: 50px;
+    }
+
+    .recruitment__producer-content {
+        flex-direction: column;
+        gap: 40px;
+        margin-bottom: 50px;
+    }
+
+    .recruitment__producer-image {
+        flex: 1;
+        width: 100%;
+    }
+
+    .recruitment__producer-title {
+        font-size: 28px;
+        margin-bottom: 32px;
+    }
+
+    .recruitment__producer-banner-title {
+        font-size: 20px;
+    }
+
+    .recruitment__producer-banner-subtitle {
+        font-size: 14px;
+    }
+
+    .recruitment__producer-cta {
+        margin-top: 50px;
+    }
+
+    .qa {
+        padding: 40px 0;
+        margin-top: 0;
+    }
+
+    .qa__title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+
+    .qa__question {
+        font-size: 16px;
+        padding: 20px 24px;
+    }
+
+    .qa__question-text {
+        font-size: 16px;
+        padding-right: 16px;
+    }
+
+    .qa__answer {
+        padding: 0 24px;
+    }
+
+    .qa__item--active .qa__answer {
+        padding: 16px 24px 24px 24px;
     }
 
     .footer__content {
@@ -2657,7 +2919,7 @@ ul {
     }
 
     .qa {
-        padding-top: 40px;
+        padding-top: 0px;
     }
 
     .contact {
@@ -2665,7 +2927,7 @@ ul {
     }
 
     .recruitment {
-        padding-top: 40px;
+        padding-top: 0px;
     }
 
     .event-list__title {
@@ -2680,20 +2942,96 @@ ul {
         font-size: 32px;
     }
 
-    .qa__title {
-        font-size: 32px;
-    }
-
     .contact__title {
         font-size: 32px;
     }
 
-    .recruitment__title {
-        font-size: 32px;
+    .recruitment__header-title {
+        font-size: 28px;
+    }
+
+    .recruitment__header-subtitle {
+        font-size: 16px;
+    }
+
+    .recruitment__concept-title {
+        font-size: 20px;
+    }
+
+    .recruitment__produce-title {
+        font-size: 24px;
+    }
+
+    .recruitment__requirements-header {
+        padding: 24px 16px;
+        gap: 24px;
+    }
+
+    .recruitment__requirements-title {
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+
+    .recruitment__requirements-list li {
+        font-size: 13px;
+    }
+
+    .recruitment__compensation-highlight {
+        font-size: 24px;
+    }
+
+    .recruitment__cta-banner {
+        padding: 16px 40px;
+        font-size: 16px;
+    }
+
+    .recruitment__producer-title {
+        font-size: 24px;
+    }
+
+    .recruitment__producer-banner {
+        padding: 30px 20px;
+    }
+
+
+    .recruitment__producer-intro {
+        font-size: 16px;
+    }
+
+    .recruitment__producer-details {
+        font-size: 14px;
+    }
+
+    .recruitment__producer-banner-tagline {
+        font-size: 18px;
+    }
+
+    .qa__title {
+        font-size: 28px;
+    }
+
+    .qa__question {
+        padding: 16px 20px;
+    }
+
+    .qa__question-text {
+        font-size: 15px;
+    }
+
+    .qa__toggle {
+        width: 28px;
+        height: 28px;
+        font-size: 18px;
     }
 }
 
 @media (max-width: 480px) {
+    .first-timers__section {
+        padding: 40px 24px;
+    }
+    .first-timers__section-title{
+        font-size: 20px;
+    }
     .event-list__grid {
         grid-template-columns: 1fr;
     }
