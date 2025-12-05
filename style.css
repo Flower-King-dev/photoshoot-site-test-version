@@ -544,6 +544,13 @@ ul {
 
     .hero__carousel-container {
         animation: slideHorizontalTablet 105s linear infinite;
+<<<<<<< HEAD
+=======
+    }
+
+    .recruitment__hero-title {
+        font-size: 28px;
+>>>>>>> b1aa6a1d1ff85c51b8e1a08dc8c38228016d8168
     }
 }
 
@@ -2140,6 +2147,7 @@ ul {
     line-height: 1.3;
 }
 
+<<<<<<< HEAD
 .recruitment__concept {
     margin-top: 20px;
 }
@@ -2160,6 +2168,15 @@ ul {
 .recruitment__header-image {
     flex: 0 0 500px;
     aspect-ratio: 4/3;
+=======
+.recruitment__hero {
+    background-color: transparent;
+    /* 背景を自由に設定可能 - background-image, background-color などを設定してください */
+    color: #111;
+    padding: 80px 40px;
+    margin-bottom: 60px;
+    position: relative;
+>>>>>>> b1aa6a1d1ff85c51b8e1a08dc8c38228016d8168
     overflow: hidden;
 }
 
@@ -2200,8 +2217,14 @@ ul {
 .recruitment__produce-title {
     font-size: 36px;
     font-weight: bold;
+<<<<<<< HEAD
     color: #000000;
     margin-bottom: 16px;
+=======
+    opacity: 0.1;
+    color: #111;
+    /* 背景に合わせて色を調整してください */
+>>>>>>> b1aa6a1d1ff85c51b8e1a08dc8c38228016d8168
 }
 
 .recruitment__produce-text {
@@ -2538,6 +2561,7 @@ ul {
 .first-timers__section-title {
     font-size: 32px;
     font-weight: bold;
+<<<<<<< HEAD
     margin-bottom: 32px;
     padding-bottom: 16px;
     border-bottom: 3px solid #2cdeec;
@@ -2553,6 +2577,12 @@ ul {
     width: 60px;
     height: 3px;
     background: #ff86f5;
+=======
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #999191;
+    color: #000000;
+>>>>>>> b1aa6a1d1ff85c51b8e1a08dc8c38228016d8168
 }
 
 .first-timers__text {
@@ -2869,6 +2899,14 @@ ul {
 
     .qa__item--active .qa__answer {
         padding: 16px 24px 24px 24px;
+    }
+
+    .recruitment__hero-title {
+        font-size: 20px;
+    }
+
+    .recruitment__hero-highlight {
+        font-size: 19px;
     }
 
     .footer__content {
